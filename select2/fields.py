@@ -288,7 +288,7 @@ class RelatedFieldMixin(object):
             self.search_field = attribute
             opts.object_name = apps.get_model(model_name.capitalize())
         print("++++++++++++++++++++++++++++++++")
-        print(opts.object_name)
+        print(apps.get_model(model_name.capitalize()))
         print("++++++++++++++++++++++++++++++++++")
         if isinstance(self.search_field, six.string_types):
             try:
