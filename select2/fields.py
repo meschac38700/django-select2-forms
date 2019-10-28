@@ -290,9 +290,15 @@ class RelatedFieldMixin(object):
 
         if isinstance(self.search_field, six.string_types):
             try:
+                print("**********************")
+                print(related.parent_model)
+                print("*************************")
                 opts = related.parent_model._meta
             except AttributeError:
                 # Django 1.8
+                print("----------------------------")
+                print(related.model._meta)
+                print("----------------------------")
                 opts = related.model._meta
             try:
                 opts.get_field(self.search_field)
