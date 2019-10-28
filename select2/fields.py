@@ -294,7 +294,7 @@ class RelatedFieldMixin(object):
             except AttributeError:
                 # Django 1.8
                 print("--------------------------------")
-                print(related.model._meta)
+                print(related.model)
                 print("---------------------------------")
                 opts = "pod.authentication." + opts.object_name # related.model._meta
             try:
