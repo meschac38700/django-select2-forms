@@ -300,6 +300,7 @@ class RelatedFieldMixin(object):
                 raise ImproperlyConfigured(
                     ("keyword argument 'search_field' references non-existent "
                      "field '%(search_field)s' in %(field_name)s of model "
+                     "search_field given : %(search_field)s"
                      "<%(app_label)s.%(object_name)s>") % {
                         'search_field': self.search_field,
                         'field_name': self.name,
