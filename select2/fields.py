@@ -287,7 +287,9 @@ class RelatedFieldMixin(object):
             model_name, attribute = self.search_field.split("__")
             self.search_field = attribute
             opts.object_name = apps.get_model(model_name.capitalize())
-
+        print("++++++++++++++++++++++++++++++++")
+        print(opts.object_name)
+        print("++++++++++++++++++++++++++++++++++")
         if isinstance(self.search_field, six.string_types):
             try:
                 opts = related.parent_model._meta
