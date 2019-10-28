@@ -295,6 +295,7 @@ class RelatedFieldMixin(object):
                 # Django 1.8
                 print("--------------------------------")
                 print(related.model)
+                print(opts.object_name)
                 print("---------------------------------")
                 opts = "pod.authentication." + opts.object_name # related.model._meta
             try:
