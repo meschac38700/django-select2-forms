@@ -297,7 +297,8 @@ class RelatedFieldMixin(object):
                     model_name, attribute = self.search_field.split("__")
                     self.search_field = attribute
                     print("++++++++++++++++++++++++++++++++")
-                    print(apps.get_model(model_name.capitalize()))
+                    print(model_name)
+                    print(apps.get_model(model_name))
                     print("++++++++++++++++++++++++++++++++++")
                     opts.object_name = apps.get_model(model_name.capitalize())
                 print("--------------------------------")
