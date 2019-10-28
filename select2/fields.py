@@ -7,6 +7,8 @@ from django.forms.models import ModelChoiceIterator
 from django.utils.encoding import force_text
 from django.utils.functional import Promise
 from django.utils import six
+from django.apps import apps
+
 try:
     from django.db.models.fields.related import lazy_related_operation
 except ImportError:
@@ -281,6 +283,11 @@ class RelatedFieldMixin(object):
                     'field_name': self.name,
                     'app_label': self.model._meta.app_label,
                     'object_name': self.model._meta.object_name})
+        if "__" in self.search_field:
+            model_name, attribute = self.search_field.split("__")
+            self.search_field = attribute
+            opts.object_name = apps.get_model(model_name.capitalize())
+
         if isinstance(self.search_field, six.string_types):
             try:
                 opts = related.parent_model._meta
