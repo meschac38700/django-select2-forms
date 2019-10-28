@@ -283,23 +283,27 @@ class RelatedFieldMixin(object):
                     'field_name': self.name,
                     'app_label': self.model._meta.app_label,
                     'object_name': self.model._meta.object_name})
-        if "__" in self.search_field:
-            model_name, attribute = self.search_field.split("__")
-            self.search_field = attribute
-            print("++++++++++++++++++++++++++++++++")
-            print(apps.get_model(model_name.capitalize()))
-            print("++++++++++++++++++++++++++++++++++")
-            opts.object_name = apps.get_model(model_name.capitalize())
+        
         if isinstance(self.search_field, six.string_types):
             try:
                 opts = related.parent_model._meta
             except AttributeError:
                 # Django 1.8
+                opts = related.model._meta
                 print("--------------------------------")
-                print(related.model)
                 print(opts.object_name)
                 print("---------------------------------")
-                opts = "pod.authentication." + opts.object_name # related.model._meta
+                if "__" in self.search_field:
+                    model_name, attribute = self.search_field.split("__")
+                    self.search_field = attribute
+                    print("++++++++++++++++++++++++++++++++")
+                    print(apps.get_model(model_name.capitalize()))
+                    print("++++++++++++++++++++++++++++++++++")
+                    opts.object_name = apps.get_model(model_name.capitalize())
+                print("--------------------------------")
+                print(opts.object_name)
+                print("---------------------------------")
+                #opts = "pod.authentication." + opts.object_name # related.model._meta
             try:
                 opts.get_field(self.search_field)
             except FieldDoesNotExist:
